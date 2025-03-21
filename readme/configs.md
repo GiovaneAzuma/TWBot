@@ -1,93 +1,88 @@
-
-
-# Configuration manual
-Help file for defining your custom configuration file.
+# Manual de Configuração
+Arquivo de ajuda para definir o seu arquivo de configuração personalizado.
 ## Server
-**Username and password**
-Can be supplied for auto login, not required if has_recaptcha is enabled or a cookie string is supplied.
+**Username e senha**
+Podem ser fornecidos para ‘login’ automático, não sendo necessários se has_recaptcha estiver habilitado ou se uma ‘string’ de ‘cookie’ for fornecida.
 
-**Endpoint & Server & World**
-These are the first parts of the URL your TW game is located at. Endpoint should start with "https://" and end at "game.php". Server and world is the server you are currently playing at, in most cases (if not all) this is the first part of the endpoint URL after "https://".
+**Endpoint, Servidor e World**
+Estas são as primeiras partes do URL onde o seu jogo TW está localizado. O Endpoint deve começar com "https://" e terminar em "game.php". Servidor e World correspondem ao servidor em que você está a jogar, sendo geralmente a primeira parte do URL após "https://".
 
-**Has Recapcha**
-This has nothing to do with the in-game bot protection, it just tells the script that the regular login procedure should be skipped and ask for a cookie string instead.
+**Has Re-capcha**
+Isso não está relacionado à proteção contra ‘bots’ no jogo, apenas informa ao ‘script’ que o procedimento de ‘login’ regular deve ser ignorado e uma ‘string’ de ‘cookie’ deve ser usada.
 
-**Server on TWPlus**
-If your game world is not (yet) available on [http://twplus.org/](http://twplus.org/) set to false. This will automatically fetch world-related data like the population required for certain buildings.
+**Servidor on TWStats**
+Se o mundo do jogo ainda não estiver disponível em [https://br.twstats.com/](https://br.twstats.com/), defina como false. Isso buscará automaticamente dados relacionados ao mundo, como a população necessária para certos edifícios.
 
 ## Bot
-This will configure non game-related related features.
+Essa seção configura funcionalidades que não estão relacionadas ao jogo.
 **Active Hours**
-Hours that the bot should be active, it defaults to 6 in the morning to 23 at night. The current time will be set to your current timezone so if your TZ differs from the game's one make sure you include the difference in time!
-**Active Delay, Inactive Delay and Inactive Still Active**
-Active delay configures the minimal time the bot will wait until next run during active hours. Inactive delay will configure the same for inactive hours. If inactive_still_active is disabled the bot will completely shut down during inactive hours and will probably time-out your session so you have to manually restart the bot in the morning.
+Define as horas em que o ‘bot’ deve estar ativo. O padrão é das 6h da manhã às 23h da noite. O horário será definido com base no seu fuso horário atual. Caso o seu fuso horário seja diferente do jogo, inclua a diferença de tempo!
+**Active Delay, Inactive Delay e Inactive Still Active**
+Active Delay configura o tempo mínimo que o ‘bot’ aguardará até a próxima execução durante as horas ativas. Inactive Delay faz o mesmo para as horas inativas. Se inactive_still_active estiver desativado, o ‘bot’ será completamente desligado durante as horas inativas e desconectará provavelmente a sua sessão, exigindo que você reinicie o ‘bot’ manualmente pela manhã.
 
 ## Notifications
-Notifications when enabled will send messages to a telegram channel.
+As notificações, quando habilitadas, enviam mensagens para um canal no Telegram.
 
 ### Setup
-To be able to send messages to a telegram channel you will need to create a bot first. To do this you can start a conversation with the [BotFather](https://t.me/botfather) and create a new bot(`/newbot`). After creating the bot you will receive a token, this token should be added to the "notifications.token" parameter in the config file.
+Para enviar mensagens para um canal no Telegram, você precisará criar um ‘bot’ primeiro. Para isso, inicie uma conversa com o [BotFather](https://t.me/botfather) e crie um ‘bot’ (/newbot). Após criar o ‘bot’, você receberá um token, que deve ser adicionado ao parâmetro "notifications.token" no arquivo de configuração.
 
-After creating the bot you will need to create a channel and add the bot as an administrator. After this you can get the channel ID by sending a message to the channel and forwarding it to the [JsonDumpBot](https://t.me/JsonDumpBot). The `forward_origin.chat.id` should be added to the "notifications.channel_id" parameter in the config file.
+Depois, crie um canal e adicione o ‘bot’ como administrador. Envie uma mensagem para o canal e encaminhe-a para o [JsonDumpBot](https://t.me/JsonDumpBot) para obter o forward_origin.chat.id. Adicione este ‘ID’ ao parâmetro "notifications.channel_id" no arquivo de configuração.
 
-Don't forget to enable the "notifications.enabled" parameter in the config file.
+Não se esqueça de habilitar o parâmetro "notifications.enabled" no arquivo de configuração.
 
 ## Building
-The manage_building boolean can disable building globally so you wont have to re-configure all your villages manually.
-**Default**
-will set the default building template, I personally like the purple_predator one but custom ones can be supplied in the builder templates folder.
+O booleano manage_building pode desativar a construção globalmente, para que você não precise reconfigurar manualmente todas as suas aldeias.
+**‘Default’**
+Define o modelo de construção padrão. Um dos modelos recomendados é o purple_predator, mas modelos personalizados podem ser fornecidos na pasta builder modelos.
 
 **Max Look-ahead**
-The max amount of buildings in the queue that get checked if the ones before fail (like not enough resources or requirements not met yet). I suggest you keep this number below 5 because otherwise it will most likely queue the cheapest buildings first.
+Número máximo de construções na fila que serão verificadas caso as anteriores falhem (como falta de recursos ou requisitos não atendidos). Recomenda-se manter este número abaixo de 5 para evitar filas com as construções mais baratas primeiro.
 
-**Max Queued Items**
-The number of items that can be queued simultaneously, default: 2. Premium accounts can have more but I do not recommend it.
+**Max Queued ‘Items’**
+Número de itens que podem ser enfileirados simultaneamente, padrão: 2. Contas de luxo podem ter mais, mas isso não é recomendado.
 
 ## Units
-This section will configure how units should be trained. With the recruit option enabled the villages should automatically start producing units upon barracks completion. By default only a few units to start the farm procedure will be created until the barracks reaches a higher level.
+Configura como as unidades devem ser treinadas. Com a opção recruit ativada, as aldeias começarão automaticamente a produzir unidades após a conclusão do quartel. Inicialmente, serão criadas apenas algumas unidades para iniciar o procedimento de farm até que o quartel atinja um nível mais alto.
 
-Unit templates can be configured in the troops template folder. The units are configured from top to bottom and the lowest one with the building requirement met will be selected as the current unit template.
+Modelos de unidades podem ser configurados na pasta troops modelo. As unidades são configuradas de cima para baixo, e o modelo mais baixo com o requisito de construção atendido será selecionado como o atual.
 
-The current template also indicates how much and what farm units should be used by the farm section.
+O modelo atual também define quais e quantas unidades de farm serão usadas pela session de farm.
 
 **Upgrading**
-By default when "upgrade" is enabled the script will automatically research units listed in the current template. This part supports both of the upgrading systems and will automatically research everything (level 0-1, 0-3, 0-10) if given enough time and resources. Higher level upgrades might take a while since most resources will be spent by the builder and recruiter.
+Se "upgrade" estiver habilitado, o ‘script’ pesquisará automaticamente as unidades listadas no modelo atual. Isso suporta os dois sistemas de ‘upgrade’ e pesquisará automaticamente tudo (níveis 0-1, 0-3, 0-10) se houver tempo e recursos suficientes. ‘Upgrades’ de nível mais alto podem levar tempo, pois os recursos são geralmente gastos pelo construtor e recrutador.
 
 **Batch size**
-The amount of units it will attempt to recruit in one time, when entering the late-game (barracks level 25+) I suggest you set this to something in the range of 500-1500. Keeping it low will allow for more variation which is useful when just starting in a world.
-Note: the batch size will always be the max amount of units in one try, if insufficient resources the script will calculate the lowest amount of units possible.
+Quantidade de unidades que o ‘script’ tentará recrutar de uma só vez. Para estágios avançados do jogo (quartel nível 25+), é sugerido algo entre 500-1500. Para estágios iniciais, valores menores permitirão mais variação.
+Nota: O tamanho do lote será sempre o máximo possível de unidades numa tentativa. Se os recursos forem insuficientes, o ‘script’ calculará o número mínimo de unidades possíveis.
 
 ## Farms
+Configura as opções de farm para todas as aldeias. Cada aldeia atacará automaticamente aldeias bárbaras próximas. Se houver espiões disponíveis, a aldeia será espionada primeiro. Caso não haja tropas ou a muralha esteja no nível zero, ela será adicionada a listar farms.
+Se não houver espiões ou eles ainda não estiverem pesquisados, o ‘script’ enviará um único ataque. Se retornar sem perdas, a aldeia será adicionada a listar farms.
 
-This section will configure the farming options for all villages, every village will automatically start attacking nearby barbarian villages. If spies are available the village will get scouted first, if it does not contain troops and the wall level is zero it will automatically be added to the farm list.
-If no scouts are available or they are not yet researched the script will send 1 farm run. If it returns without any losses it should also get added to the farm list.
-
-By default the script will choose quantity over resources since other players could also be attacking this village. The "default_away_time" parameter sets the amount of seconds the bot will wait before attacking this village again. "full_loot_away_time" does the same but for high priority villages (full loot return).
+Por padrão, o ‘script’ prioriza quantidade em vez de recursos, já que outros jogadores também podem estar a atacar a aldeia. Os parâmetros "default_away_time" e "full_loot_away_time" configuram os tempos de espera para atacar novamente aldeias de prioridade normal e alta, respetivamente.
 
 ## Market
-The market feature automatically manages the resources in your village. This is especially nice whenever the builder is low on a certain resource and has plenty of others.
-"max_trade_duration" configures the max amount of trade time in hours, this should be kept low.
+A funcionalidade de mercado gerencia automaticamente os recursos da sua aldeia. Isso é especialmente útil quando o construtor está com poucos recursos específicos.
+O parâmetro "max_trade_duration" configura o tempo máximo de negociação em horas. Recomenda-se manter este valor baixo para garantir que os recursos sejam trocados rapidamente e de forma eficiente.
 
 **Trading frequency**
-The trader will auto remove any items that are listed more than "max_trade_duration" in hours. When also doing custom trading with the village I would suggest you disable the "auto_remove" option.
+O trader removerá automaticamente itens listados por mais de "max_trade_duration" horas. Para negociações personalizadas, desative a opção "auto_remove".
 
 **Trade multiplier**
-If your world does not allow uneven trading you should disable the "trade_multiplier" option. By default it is enabled at factor 0.9 so it will trade 900 stone for 1000 wood if 1000 is the requested resource by the builder.
-I would suggest you keep the factor multiplier below 1.0 because otherwise you are paying more than you should ;)
+Se o seu mundo não permitir trocas desiguais, desative esta opção. Por padrão, está configurado em 0,9, o que significa trocará 900 pedras por 1000 madeiras se 1000 forem solicitados pelo construtor. Recomenda-se manter o multiplicador abaixo de 1,0 para evitar prejuízos.
 
 ## World options
-I think only the "quests_enabled" is currently working and it should automatically finish quests once all the requirements are met. When this is the case it should restart the current run for the village because there might be a resource award paired with the quest.
+Atualmente, apenas o "quests_enabled" está a funcionar. Ele completa automaticamente as missões assim que os requisitos são atendidos. Quando isso acontece, o ‘script’ reinicia a execução atual para a aldeia, pois pode haver recompensas de recursos associadas à missão.
 
 # Village configuration
-This configures what and how villages are being managed. Both the building and units override the global template options. If you want the bot to (temporary) skip the village you can disable the "managed" option.
+Configura como as aldeias serão gerenciadas. Tanto a construção quanto as unidades podem sobrescrever as opções globais de modelo. Para que o ‘bot’ pule (temporariamente) a aldeia, desative a opção "managed".
 
 **Building priority**
-Whenever the "prioritize_building" is enabled the recruiter will only create units whenever the building items queued equals the "max_queued_items" value set in the building configuration.
+Quando "prioritize_building" estiver habilitado, o recrutador criará unidades apenas quando os itens enfileirados atingirem o valor "max_queued_items" definido.
 
-**Snob priority**
-This will force the bot to reserve resources for snob creation, only the builder has a higher priority. It will also request resources from the market for coin crafting and snob creation.
-The amount of snobs that can be created in a village can be configured with the "snobs" parameter.
+**‘Snob’ priority**
+Reservará recursos para a criação de ‘snobs’, e apenas o construtor terá prioridade mais alta. Também requisitará recursos do mercado para criação de moedas e ‘snobs’. O número de ‘snobs’ que podem ser criados numa aldeia pode ser configurado com o parâmetro "snobs".
 
 **Custom farms**
-Each village can have a list of custom farms in the "additional_farms" parameter, the village ID's should be added as strings.
-*Note: This option can be very dangerous! if the village gets captured by you or some other player the bot will still keep attacking until troops die or the entry gets disabled in the village cache file.*
+Cada aldeia pode ter uma lista de farms personalizados no parâmetro "additional_farms", onde os ‘IDs’ das aldeias devem ser adicionados como ‘strings’.
+*Nota: Esta opção pode ser perigosa! Se a aldeia for capturada por você ou outro jogador, o ‘bot’ continuará a atacar até que as tropas morram ou a entrada seja desativada no arquivo de cache da aldeia.*

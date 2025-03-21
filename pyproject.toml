@@ -4,12 +4,12 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "TWBot"
-version = "2.0.3"
+version = "2.0.4"
 description = "Tribal Wars Bot"
 readme = "README.md"
 requires-python = ">=3.8"
 license = { file = "LICENSE.md" }
-authors = [{ name = "matthewmoorcroft", email = "matthewmoorcroft@gmail.com" }]
+authors = [{ name = "Giovane Azuma", email = "giovane.azuma2010@gmail.com" }]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
@@ -27,8 +27,8 @@ dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/matthewmoorcroft/TWBot"
-"Repository" = "https://github.com/matthewmoorcroft/TWBot"
+"Homepage" = "https://github.com/GiovaneAzuma/TWBot"
+"Repository" = "https://github.com/GiovaneAzuma/TWBot"
 
 
 [tool.flit.module]

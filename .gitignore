@@ -138,3 +138,6 @@ dmypy.json
 twb/bot.py
 twb/core/filemanager.py
 twb/core/templates.py
+
+#PyCharm settings
+.idea

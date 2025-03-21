@@ -1,42 +1,42 @@
+# How-to  
+Arquivo de ajuda para explicar o fluxo de trabalho do bot  
 
+### Novo jogador  
+O ‘bot’ deve funcionar a partir do momento em que você entra num mundo pela primeira vez.  
+Ele irá automaticamente construir os primeiros prédios e completar as primeiras quests (se habilitadas).  
+Quando o barracks for construído, o processo de recrutamento deverá começar.  
+Assim que as primeiras unidades de **spear** começarem a ser treinadas, o processo de **farm** também deverá ser iniciado automaticamente.  
 
-# How-to
-Help file for explaining the bot workflow
+Com o tempo, o ‘bot’ também começará a determinar quais unidades pesquisar/atualizar.  
 
-### New player
-The bot should work from the moment you first join a world.
-It will automatically build the first buildings and complete the first quests (if enabled).
-When the barracks is built the recruitment process should start.
-If the first spear units start rolling off the conveyor belt the farm process should also start to do its thing.
+### Após algum tempo  
+Se os prédios atingirem níveis mais altos, o ‘bot’ começará a criar negociações no **market**.  
+Isso permite que o processo de construção continue a funcionar com alta eficiência.  
 
-In some time the bot should also start to figure out which units to research / upgrade.
+Sempre que o mundo tiver o sistema de "flags" habilitado, o ‘bot’ também tentará atualizar e configurar a **‘flag’** de "resource bonus" mais alta.  
+Nesse ponto, o sistema de ajuste de **farming** (`manager.py`) deverá ser capaz de detetar quais farms têm os maiores/menores ganhos de recursos e ajustará automaticamente os parâmetros das vilas.  
 
+### Após mais algum tempo  
+Você chegará ao ponto em que outros jogadores poderão atacá-lo.  
+Eles podem pensar que a sua vila é um alvo fácil, mas com os parâmetros corretos configurados, você terá um exército ótimo.  
 
-### After some time
-If your buildings have reached some higher levels the bot starts to create market trades.
-This allows the building process to keep working at high efficiency.
+Sempre que um ataque for detetado, o ‘bot’ interromperá o processo de **farming** e configurará automaticamente a **‘flag’** de "defence bonus" mais alta.  
+Unidades valiosas (ou defensivas fracas) serão evacuadas caso você tenha mais de uma vila.  
 
-Whenever the world has the "flags" system enabled the bot will also attempt to upgrade and set the highest "resource bonus" flag.
-At this point farming tweak system (manager.py) should be able to detect which farms have the highest / lowest resource gain and automatically tweak the village parameters.
+Se o ‘bot’ também tiver a opção `manage_defence` habilitada, ele enviará unidades defensivas como suporte.  
+Essa parte pode ser configurada por vila.  
 
-### After some more time
-You will reach the point where other players can attack you.
-They might think your village is an easy target but with the right parameters set you will have a very good army.
+### Meio/Fim de jogo  
+Quando você alcançar o estágio em que o **‘snob’** for construído, você poderá configurar o parâmetro `snob` na vila como `1`.  
+Isso iniciará a criação das moedas necessárias e treinará um **‘snob’**.  
 
-Whenever an incoming attack is detected the bot will stop the farming process and automatically set the highest "defence bonus" flag.
-Valuable (or crappy defensive) units will be evacuated whenever you have more then one village.
+Se você quiser testar algo experimental, pode configurar a configuração atual de **farm** para incluir um **‘snob’**.  
+Isso começará, lentamente, a conquistar todas as vilas de farm ao redor :)  
 
-If the bot also has the "manage_defence" option enabled it will send defensive units as support.
-This part can be configured per village
+Quando mais vilas forem adquiridas, você poderá configurar o ‘bot’ para copiar automaticamente a configuração existente para as novas vilas.  
+De preferência, configure-as manualmente, já que você provavelmente desejará ajustar alguns detalhes.  
 
-### Mid/Late game
-Once you have reached the stage where the snob is built you can set the snob parameter on the village to 1.
-This will start to create the necessary coins and will train a snob.
+Também sugiro que você continue a jogar ocasionalmente usando a sessão no navegador.  
+Você pode encontrar alguns **captcha's**, que o ‘bot’ não será capaz de resolver :)  
 
-If you want stuff experimental you can set the current farm configuration to contain a snob. This will slowly start to take-over all surrounding farm villages :)
-
-Once more villages are achieved you can set the bot to automatically copy the existing configuration to new ones. Preferably you set them manually since you probably want to tweak some stuff.
-
-I would also suggest you keep playing using the browser session once in a while, you might run into some captcha's which the bot will break on :)
-
-Have fun!
+**Divirta-se!**
