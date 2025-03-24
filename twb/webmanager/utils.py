@@ -11,12 +11,12 @@ class DataReader:
     @staticmethod
     def cache_grab(cache_location):
         output = {}
-        c_path = f"{Path.cwd()}/cache/{cache_location}"
+        c_path = f"{Path.cwd().parent}/cache/{cache_location}"
         for existing in os.listdir(c_path):
             existing = str(existing)
             if not existing.endswith(".json"):
                 continue
-            t_path = f"{Path.cwd()}/cache/{cache_location}/{existing}"
+            t_path = f"{Path.cwd().parent}/cache/{cache_location}/{existing}"
             with open(t_path) as f:
                 try:
                     output[existing.replace(".json", "")] = json.load(f)
@@ -44,7 +44,7 @@ class DataReader:
 
     @staticmethod
     def config_grab():
-        with open(f"{Path.cwd()}/config.json", encoding="utf-8") as f:
+        with open(f"{Path.cwd().parent}/config.json", encoding="utf-8") as f:
             return json.load(f)
 
     @staticmethod
@@ -53,7 +53,7 @@ class DataReader:
             value = json.loads(value)
         except ValueError:
             pass
-        config_file_path = f"{Path.cwd()}/config.json"
+        config_file_path = f"{Path.cwd().parent}/config.json"
         with open(config_file_path, encoding="utf-8") as config_file:
             template = json.load(config_file, object_pairs_hook=collections.OrderedDict)
             if "." in parameter:
@@ -63,12 +63,12 @@ class DataReader:
                 template[parameter] = value
             with open(config_file_path, "w", encoding="utf-8") as newcf:
                 json.dump(template, newcf, indent=2, sort_keys=False)
-                print("Deployed new configuration file")
+                print("Novo arquivo de configuração implantado")
                 return True
 
     @staticmethod
     def village_config_set(village_id, parameter, value):
-        config_file_path = f"{Path.cwd()}/config.json"
+        config_file_path = f"{Path.cwd().parent}/config.json"
         with open(config_file_path) as config_file:
             template = json.load(config_file, object_pairs_hook=collections.OrderedDict)
             if village_id not in template["villages"]:
@@ -79,12 +79,12 @@ class DataReader:
                 template["villages"][str(village_id)][parameter] = value
             with open(config_file_path, "w") as newcf:
                 json.dump(template, newcf, indent=2, sort_keys=False)
-                print("Deployed new configuration file")
+                print("Novo arquivo de configuração implatado")
                 return True
 
     @staticmethod
     def get_session():
-        c_path = f"{Path.cwd()}/cache/session.json"
+        c_path = f"{Path.cwd().parent}/cache/session.json"
         if not os.path.exists(c_path):
             return {"raw": "", "endpoint": "None", "server": "None", "world": "None"}
         with open(c_path) as session_file:
@@ -200,9 +200,9 @@ class BotManager:
         wd = os.path.join(os.path.dirname(__file__), "..")
         proc = subprocess.Popen("python twb.py", cwd=wd, shell=True)
         self.pid = proc.pid
-        print("Bot started successfully")
+        print("Bot iniciado com sucesso")
 
     def stop(self):
         if self.is_running():
             os.kill(self.pid, sig=0)
-            print("Bot stopped successfully")
+            print("Bot parado com sucesso")

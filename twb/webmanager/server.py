@@ -34,13 +34,13 @@ app.config["DEBUG"] = True
 def pre_process_bool(key, value, village_id=None):
     if village_id:
         if value:
-            return f'<button class="btn btn-sm btn-block btn-success" data-village-id="{village_id}" data-type-option="{key}" data-type="toggle">Enabled</button>'
+            return f'<button class="btn btn-sm btn-block btn-success" data-village-id="{village_id}" data-type-option="{key}" data-type="toggle">Ativado</button>'
         else:
-            return f'<button class="btn btn-sm btn-block btn-danger" data-village-id="{village_id}" data-type-option="{key}" data-type="toggle">Disabled</button>'
+            return f'<button class="btn btn-sm btn-block btn-danger" data-village-id="{village_id}" data-type-option="{key}" data-type="toggle">Desativado</button>'
     if value:
-        return f'<button class="btn btn-sm btn-block btn-success" data-type-option="{key}" data-type="toggle">Enabled</button>'
+        return f'<button class="btn btn-sm btn-block btn-success" data-type-option="{key}" data-type="toggle">Ativado</button>'
     else:
-        return f'<button class="btn btn-sm btn-block btn-danger" data-type-option="{key}" data-type="toggle">Disabled</button>'
+        return f'<button class="btn btn-sm btn-block btn-danger" data-type-option="{key}" data-type="toggle">Desativado</button>'
 
 
 def preprocess_select(key, value, templates, village_id=None):
@@ -110,7 +110,7 @@ def fancy(key):
 
 
 def pre_process_config():
-    # TODO get generic config
+    # TODO obter configuração genérica
     config = sync()["config"]
     to_hide = ["build", "villages"]
     sections = {}

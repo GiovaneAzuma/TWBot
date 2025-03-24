@@ -6,11 +6,11 @@
 		<thead>
 			<tr>
 				<th>ID#</th>
-				<th>Name</th>
+				<th>Nome</th>
 				<th>Info</th>
-				<th>Building</th>
-				<th>Units</th>
-				<th>Actions</th>
+				<th>Prédio</th>
+				<th>Unidades</th>
+				<th>Ações</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,8 +27,8 @@
 					<td>{% if village_id in data.config.villages %} {{data.config.villages[village_id].building}} {% else %} No config {% endif %}</td>
 					<td>{% if village_id in data.config.villages %} {{data.config.villages[village_id].units}} {% else %} No config {% endif %}</td>
 					<td>
-						<a href="map?center={{village_id}}" class="btn btn-success btn-sm">Map</a>
-						<a href="village?id={{village_id}}" class="btn btn-success btn-sm">Config</a>
+						<a href="map?center={{village_id}}" class="btn btn-success btn-sm">Mapa</a>
+						<a href="village?id={{village_id}}" class="btn btn-success btn-sm">Configuração</a>
 					</td>
 				</tr>
 				<tr>
@@ -39,7 +39,7 @@
 						{% endfor %}
 					</td>
 					<td>
-						Building: {{data.bot[village_id].queued | count}}
+						Construção: {{data.bot[village_id].queued | count}}
 					</td>
 				</tr>
 			{% endfor %}

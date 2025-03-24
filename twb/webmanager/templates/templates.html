@@ -8,7 +8,7 @@
 		<thead>
 			<tr>
 				<th>Template</th>
-				<th>Actions</th>
+				<th>Ações</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -20,8 +20,8 @@
 			{% endfor %}
 			<tr class="table-primary">
 				<form method="post">
-					<td><input type="text" class="form-control" name="new" placeholder="New template (should end with .txt)"></td>
-					<td><input type="submit" class="btn btn-info btn-inline" name="add" value="Add new"></td>
+					<td><input type="text" class="form-control" name="new" placeholder="Novo template (deve terminar com .txt)"></td>
+					<td><input type="submit" class="btn btn-info btn-inline" name="add" value="Adicionar novo"></td>
 				</form>
 			</tr>
 		</tbody>
@@ -31,10 +31,10 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Order</th>
-				<th>Building</th>
-				<th>Levels</th>
-				<th>Actions</th>
+				<th>Ordem</th>
+				<th>Prédio</th>
+				<th>Andares</th>
+				<th>Ações</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -52,7 +52,7 @@
 					-&gt;
 					<input type="number" class="form-control" value="1" id="new_val_end"/>
 				</td>
-				<td><input type="button" class="btn btn-success btn-inline" value="Add row"></td>
+				<td><input type="button" class="btn btn-success btn-inline" value="Adicionar linha"></td>
 			</tr>
 		{% for t in templates[selected] %}
 			<tr>

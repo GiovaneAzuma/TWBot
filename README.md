@@ -1,15 +1,15 @@
 # Tribal Wars Bot (TWB)
-## An open source bot for the Tribal Wars game
+## Um bot de código aberto para o jogo Tribal Wars
 
-## Update 2.0.2 notice
-Simplification of the project. Renamed to TWBot. Find more info and download from [PyPi]
+## Aviso de atualização 2.0.2
+Simplificação do projeto. Renomeado para TWBot. Mais informações e ‘download’ disponíveis no [PyPi]
 
 [PyPi]: https://pypi.org/project/TWBot/
 
-## A Simple Example
+## Um Exemplo Simples
 
 ```python
-# save this as app.py
+# salve isso como app.py
 from twb.bot import TWB
 
 
@@ -21,44 +21,43 @@ if __name__ == "__main__":
     main()
 ```
 
-We also created a [Discord](https://discord.gg/8PuzHjttMy) server so you can seek help from other users.
+Nós também criamos um servidor no [Discord](https://discord.gg/8PuzHjttMy) para que você possa buscar ajuda com outros usuários.
 
-*Features:*
-- Cooperative mode (you can keep playing using the browser while the bot manages stuff in the background)
-- Building management
-- Defence management
-- Troop management
-- Flag management
-- Automatically adds conquered villages
-- Farm management
-- Market management
-- Premium market (free premium points :D)
-- Research management (including level systems)
-- Automatic snob creation
-- Report management
-- ReCaptcha "bypass" by using browser cookie string (bot works if browser session is valid)
+*Funcionalidades:*
+- Modo cooperativo (você pode continuar jogando no navegador enquanto o bot gerencia tarefas em segundo plano)
+- Gerenciamento de construções
+- Gerenciamento de defesa
+- Gerenciamento de tropas
+- Gerenciamento de bandeiras
+- Adição automática de aldeias conquistadas
+- Gerenciamento de farms
+- Gerenciamento do mercado
+- Mercado premium (pontos premium gratuitos :D)
+- Gerenciamento de pesquisas (incluindo sistemas de nível)
+- Criação automática de nobres
+- Gerenciamento de relatórios
+- "Bypass" do ReCaptcha utilizando o cookie do navegador (o bot funciona se a sessão do navegador for válida)
 
-*How To:*
-- Install library
-- Run using example above
-- Default config will be created on startup
-	- add at least the endpoint and server
-	- change the village_template configuration section to your needs
+*Como fazer:*
+- Instale a library
+- Execute usando o exemplo acima
+- O arquivo de configuração padrão (config.json) será criado na inicialização
+	- Adicione pelo menos o endpoint e o servidor
+	- Altere a seção de configuração village_template de acordo com suas necessidades
 
 
-- Start the bot by running python twb.py and supply the cookie string from your browser
-- If login works you can adjust the config.json to your needs, it will automatically reload on change.
-- Your villages will be added to the config automatically, disable the "managed" parameter to make the bot skip the village
-- Additional properties can be tweaked by running the manager.py script
-- You might want to set the bot user-agent in core/request.py to your own user agent. They probably wont notice but just in case :)
+- Inicie o bot executando python twb.py e forneça o cookie com suas necessidades
+- Se o login funcionar, você pode ajustar o arquivo config.json conforme necessário; ele será recarregado automaticamente quando alterado.
+- Suas aldeias serão adicionadas automaticamente ao arquivo de configuração. Desative o parâmetro "managed" para que o bot pule a aldeia.
+- Propriedades adicionais podem ser ajustadas executando o script manager.py.
+- Você pode querer configurar o user-agent do bot no arquivo core/request.py com o seu próprio user-agent. Provavelmente não perceberão, mas é melhor prevenir. :)
 
-You can find the cookie string in the following location (Chrome):
+Você pode encontrar o valor do cookie na seguinte localização (Chrome):
 
 ![Screenshot](readme/network.JPG)
 
-You need to use the cookie: header value
+Você precisa usar o valor do cabeçalho cookie:.
 
-*optional: If everything is set-up correctly and the bot is running you can `cd` into the webmanager directory and start the bot interface by running `server.py`. You can access this dashboard by visiting http://127.0.0.1:5000/ in your browser.
-A lot of new features will be added to the dashboard soon.*
+*Opcional: Se tudo estiver configurado corretamente e o bot estiver rodando, você pode usar o comando cd para entrar no diretório webmanager e iniciar a interface do bot executando server.py. Você pode acessar este dashboard visitando http://127.0.0.1:5000/ no navegador. Muitas novas funcionalidades serão adicionadas ao dashboard em breve.*
 
-More information about configuring the bot can be found in the readme directory!
+Mais informações sobre a configuração do bot podem ser encontradas no diretório readme!

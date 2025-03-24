@@ -9,7 +9,7 @@
 		  </li>
 		{% endfor %}
 	</ul>
-	 <a id="save_config" class="btn btn-success disabled">Save</a>
+	 <a id="save_config" class="btn btn-success disabled">Salvar</a>
 </div>
 
 <div class="row border">
@@ -35,7 +35,7 @@
     var set_values = {};
 	function set_config(parameter, value) {
 		$.getJSON("/app/config/set?parameter="+encodeURIComponent(parameter)+"&value="+encodeURIComponent(value), function(data){
-			console.log("Set values", parameter, value);
+			console.log("Valores configurados", parameter, value);
 		});
 	}
 
@@ -43,18 +43,18 @@
 		if(!value) {
 			target.removeClass("btn-success");
 			target.addClass("btn-danger");
-			target.text("Disabled");
+			target.text("Desativado");
 		} else {
 			target.addClass("btn-success");
 			target.removeClass("btn-danger");
-			target.text("Enabled");
+			target.text("Ativado");
 		}
 	}
 
 	function toggle_event(event) {
 		var target = $(event.target);
 		var name = target.attr("data-type-option");
-		if(name == undefined) alert("Error setting target");
+		if(name == undefined) alert("Erro ao definir o alvo");
 		var current_value = target.hasClass("btn-success");
 		var next_value = !current_value;
 		set_config(name, next_value);
@@ -64,14 +64,14 @@
 	function select_event(event) {
 	  var target = $(event.target);
 		var name = target.attr("data-type-option");
-		if(name == undefined) alert("Error setting target");
+		if(name == undefined) alert("Erro ao definir o alvo");
 		set_config(name, target.val());
 	}
 
 	function num_event() {
       var target = $(event.target);
       var name = target.attr("data-type-option");
-      if(name == undefined) alert("Error setting target");
+      if(name == undefined) alert("Erro ao definir o alvo");
       set_values[name] = parseInt(target.val());
       $('#save_config').removeClass('disabled');
 	}
@@ -79,7 +79,7 @@
 	function text_event() {
       var target = $(event.target);
       var name = target.attr("data-type-option");
-      if(name == undefined) alert("Error setting target");
+      if(name == undefined) alert("Erro ao definir o alvo");
       set_values[name] = target.val();
       $('#save_config').removeClass('disabled');
 	}

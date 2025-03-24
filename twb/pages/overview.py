@@ -1,8 +1,6 @@
 import dataclasses
 import re
-from typing import Dict
-from typing import Optional
-from typing import Tuple
+from typing import Dict, Optional, Tuple
 
 from bs4 import BeautifulSoup
 from requests import Response
@@ -10,13 +8,13 @@ from twb.core.request import WebWrapper
 
 
 class Point:
-    """Represents a point with x and y coordinates."""
+    """Representa um ponto com coordenadas x e y."""
 
     def __init__(self, x: int, y: int):
         if not isinstance(x, int):
-            raise TypeError("x must be an integer")
+            raise TypeError("x deve ser um inteiro")
         if not isinstance(y, int):
-            raise TypeError("y must be an integer")
+            raise TypeError("y deve ser um inteiro")
         self.x = x
         self.y = y
 
@@ -24,13 +22,13 @@ class Point:
         return f"({self.x}|{self.y})"
 
     def __eq__(self, other: "Point") -> bool:
-        """Check if two Point instances have the same coordinates."""
+        """Verifica se duas instâncias de Point têm as mesmas coordenadas."""
         if isinstance(other, Point):
             return self.x == other.x and self.y == other.y
         return False
 
     def distance_to(self, other: "Point") -> float:
-        """Calculate the square of the distance between this point and another point."""
+        """Calcula o quadrado da distância entre este ponto e outro ponto."""
         return (self.x - other.x) ** 2 + (self.y - other.y) ** 2
 
     def __str__(self):
@@ -38,78 +36,78 @@ class Point:
 
 
 class Farm:
-    """Represents farm population."""
+    """Representa a população da fazenda."""
 
     def __init__(self, population: str):
         """
-        Initializes a Farm object.
+        Inicializa um objeto Farm.
 
         Args:
-            population (str): The string representation of population.
-                Format: 'current/maximum'.
+            population (str): A representação em string da população.
+                Formato: 'atual/máxima'.
 
-        Raises:
-            ValueError: If the population string format is invalid.
+        Levanta:
+            ValueError: Se o formato da string da população for inválido.
         """
         if not re.match(r"\d+/\d+", population):
-            raise ValueError("Invalid population string format")
+            raise ValueError("Formato de string de população inválido.")
         current, maximum = map(int, population.split("/"))
         self.current = current
         self.maximum = maximum
 
     def is_full(self) -> bool:
         """
-        Check if the farm is full.
+        Verifica se a fazenda está cheia.
 
-        Returns:
-            bool: True if the farm is full, False otherwise.
+        Retorna:
+            bool: True se a fazenda estiver cheia, false caso contrário.
         """
         return self.current == self.maximum
 
     def calculate_remaining_capacity(self) -> int:
         """
-        Calculate the remaining capacity of the farm.
+        Calcula a capacidade restante da fazenda.
 
-        Returns:
-            int: The remaining capacity.
+        Retorna:
+            int: A capacidade restante.
         """
         return self.maximum - self.current
 
 
 class Storage:
-    """Represents storage resources (wood, stone, iron)."""
+    """Representa os recursos de armazenamento (madeira, pedra, ferro)."""
 
     def __init__(self, resources: str, capacity: str):
         """
-        Initializes a Storage object.
+        Inicializa um objeto Storage.
 
         Args:
-            resources (str): The string representation of resources.
-                Format: 'wood,stone,iron'.
-            capacity (str): The string representation of capacity.
-                Format: 'capacity'.
+            resources (str): A representação em string dos recursos.
+                Formato: 'madeira,pedra,ferro'.
+            capacity (str): A representação em string da capacidade.
+                Formato: 'capacidade'.
 
-        Raises:
-            ValueError: If the resources string format is invalid.
-            ValueError: If the capacity string format is invalid.
+        Levanta:
+            ValueError: Se o formato da string dos recursos for inválido.
+            ValueError: Se o formato da string da capacidade for inválido.
         """
         resource_values = resources.replace(".", "").split(" ")
         if len(resource_values) != 3:
-            print("Invalid resources string format")
+            print("Formato inválido da string de recursos")
         try:
             self.wood = int(resource_values[0])
             self.stone = int(resource_values[1])
             self.iron = int(resource_values[2])
         except ValueError as err:
-            raise ValueError("Invalid resources string format") from err
+            raise ValueError("Formato inválido da string de recursos") from err
         try:
             self.capacity = int(capacity)
         except ValueError as err:
-            raise ValueError("Invalid capacity string format") from err
+            raise ValueError("Formato inválido da string de capacidade") from err
 
 
 class Village:
-    """Represents a village with its name, coordinates, and continent."""
+    """Representa uma aldeia com seu nome, coordenadas e continente."""
 
     def __init__(
         self,
@@ -122,19 +120,19 @@ class Village:
         farm: Farm,
     ):
         """
-        Initializes a Village object.
+        Inicializa um objeto Village.
 
         Args:
-            village_id (str): The ID of the village.
-            village_name (str): The name of the village.
-            coordinates (Point): The coordinates of the village.
-            continent (str): The continent of the village.
-            points (str): The points of the village.
-            storage (Storage): The storage of the village.
-            farm (Farm): The farm of the village.
+            village_id (str): O ID da aldeia.
+            village_name (str): O nome da aldeia.
+            coordinates (Point): As coordenadas da aldeia.
+            continent (str): O continente da aldeia.
+            points (str): Os pontos da aldeia.
+            storage (Storage): O armazenamento da aldeia.
+            farm (Farm): A fazenda da aldeia.
 
-        Raises:
-            ValueError: If the village string format is invalid.
+        Levanta:
+            ValueError: Se o formato da string da aldeia for inválido.
         """
         self._village_id = village_id
         self._village_name = village_name
@@ -145,8 +143,8 @@ class Village:
         self._farm = farm
 
     def __str__(self) -> str:
-        """Return a human-readable representation of the Village object."""
-        return f"Village: {self._village_name}, Coordinates: {self._coordinates}, Continent: {self._continent}"
+        """Retorna uma representação legível da aldeia."""
+        return f"Aldeia: {self._village_name}, Coordenadas: {self._coordinates}, Continente: {self._continent}"
 
     def __repr__(self):
         return f"Village(village_id={self._village_id}, village_name={self._village_name}, coordinates={self._coordinates}, continent={self._continent}, points={self._points}, storage={self._storage}, farm={self._farm})"
@@ -154,13 +152,13 @@ class Village:
     @staticmethod
     def parse_coordinates(cords: str) -> "Point":
         """
-        Parse the coordinates string and return a Point object.
+        Analisa a string das coordenadas e retorna um objeto Point.
 
         Args:
-            cords (str): The string representation of coordinates.
+            cords (str): A representação em string das coordenadas.
 
-        Returns:
-            Point: The Point object with parsed coordinates.
+        Retorna:
+            Point: O objeto Point com as coordenadas analisadas.
         """
         x, y = map(int, cords.strip("()").split("|"))
         return Point(x, y)
@@ -196,7 +194,7 @@ class Village:
 
 @dataclasses.dataclass
 class WorldSettings:
-    """Represents the world settings."""
+    """Representa as configurações do mundo."""
 
     flags: bool = Optional[bool]
     knight: bool = Optional[bool]
@@ -205,14 +203,14 @@ class WorldSettings:
 
 
 class OverviewPage:
-    """Represents the overview page with village data and world options."""
+    """Representa a página de visão geral com os dados da aldeia e as opções do mundo."""
 
     def __init__(self, wrapper):
         """
-        Initializes an OverviewPage object.
+        Inicializa um objeto OverviewPage.
 
         Args:
-            wrapper: The wrapper object for making HTTP requests.
+            wrapper: O objeto wrapper para fazer requisições HTTP.
         """
         self.wrapper: WebWrapper = wrapper
         self.world_settings: WorldSettings = WorldSettings()
@@ -225,11 +223,11 @@ class OverviewPage:
         self.parse_header_info()
 
     def _get_overview_villages_data(self):
-        """Get the overview villages data using the wrapper object."""
+        """Obtém os dados das aldeias da visão geral usando o objeto wrapper."""
         return self.wrapper.get_url("game.php?screen=overview_villages")
 
     def parse_production_table(self):
-        """Parse the production table to extract village data."""
+        """Analisa a tabela de produção para extrair os dados das aldeias."""
         if self.production_table:
             rows = self.production_table.find_all("tr")
             for row in rows:
@@ -237,7 +235,7 @@ class OverviewPage:
                     cells = row.find_all("td")
                     idx_offset = (
                         1 if len(cells[0].contents) == 0 else 0
-                    )  # Compatibility with premium account
+                    )  # Compatibilidade com conta premium
                     village_id = cells[idx_offset].contents[1].attrs["data-id"]
 
                     name, coordinates, continent = self._extract_name_cords_continent(
@@ -255,7 +253,7 @@ class OverviewPage:
                     self.villages_data[village_id] = village
 
     def parse_header_info(self) -> None:
-        """Parse header information to get world options."""
+        """Analisa as informações do cabeçalho para obter as opções do mundo."""
         text = self.result_get.text
 
         self.world_settings.flags = "screen=flags" in text
@@ -265,7 +263,7 @@ class OverviewPage:
 
     @staticmethod
     def _extract_name_cords_continent(cell_value: str) -> Tuple[str, Point, str]:
-        """Extract name, coordinates and continent from cell value."""
+        """Extrai nome, coordenadas e continente do valor da célula."""
         match = re.match(r"(.+)\s\((\d+)\|(\d+)\)\s(.+)", cell_value)
         if match:
             name = match.group(1)
@@ -273,4 +271,4 @@ class OverviewPage:
             continent = match.group(4)
             return name, coordinates, continent
         else:
-            print("Invalid village string format. Skipping village...")
+            print("Formato inválido da string da aldeia. Pulando aldeia..")

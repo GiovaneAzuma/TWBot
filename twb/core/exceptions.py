@@ -1,47 +1,47 @@
 class VillageInitException(Exception):
     """
-    Error when village init does not happen correctly
+    Erro quando a inicialização da vila não ocorre corretamente
     """
 
 
 class VillageNotExists(Exception):
     """
-    A village is added to the bot that is not configured in the config file
+    Uma vila foi adicionada ao bot que não está configurada no arquivo de configuração
     """
 
 
 class InvalidGameStateException(Exception):
     """
-    There was an error reading the game state of the village
+    Houve um erro ao ler o estado do jogo da vila
     """
 
 
 class InvalidUnitTemplateException(Exception):
     """
-    The selected unit template for the village is either missing or corrupted
+    O template de unidade selecionada para a vila está ausente ou corrompido
     """
 
 
 class InvalidJSONException(Exception):
     """
-    The JSON file I'm trying to read is corrupted and cannot be parsed
+    O arquivo JSON que estou tentando ler está corrompido e não pode ser analisado
     """
 
 
 class FileNotFoundException(Exception):
     """
-    The file I'm trying to read does not exist and is expected to be there
+    O arquivo que estou tentando ler não existe e era esperado que estivesse presente
     """
 
 
 class UnsupportedPythonVersion(Exception):
     """
-    You are trying run the bot with an outdated python version
-    Updating to Python3 fixes this issue
+    Você está tentando executar o bot com uma versão desatualizada do Python
+    Atualizar para Python3 resolve este problema
     """
 
 
 class NoInternetException(Exception):
     """
-    Error when village init does not happen correctly
+    Erro ao inicializar a vila devido à falta de conexão com a internet
     """
